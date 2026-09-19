@@ -1,53 +1,49 @@
-# AI-Based Student Placement Prediction and Skill Analysis System
+# Placement Atelier · Midnight Bloom
 
-## Overview
-This end-to-end machine learning web application predicts whether a student is likely to get placed based on various factors (academic performance, technical skills, etc.). It also provides personalized skill recommendations and features an interactive dashboard.
+AI-based **student placement prediction** and skill practice studio — dark floral Streamlit app with HR interview, aptitude polls, voice coaching, coding tests, and project ideas.
 
-## Project Structure
+**Repo:** https://github.com/sadhasadhanaa37-afk/student-placement-ml
+
+## Features
+- Placement prediction + skill recommendations  
+- Company directory  
+- HR practice (soft skills, GD, technical Q&A, coding, projects, communication)  
+- Aptitude chatbot with 4-option polls  
+- Voice: bot speaks (TTS) + you can speak (mic / audio)  
+- Dark floral **Midnight Bloom** theme  
+
+## Local setup
+
+```bash
+pip install -r requirements.txt
+python data/generate_data.py   # if you need to regenerate data
+python src/train.py            # if you need to retrain
+python -m streamlit run app.py
+```
+
+## Deploy (important)
+
+**Vercel cannot host Streamlit** (Streamlit needs a long-running Python server; Vercel is for static / serverless Node apps).
+
+### Option A — Streamlit Community Cloud (recommended)
+1. Open: https://share.streamlit.io/  
+2. Sign in with GitHub  
+3. Deploy repo `sadhasadhanaa37-afk/student-placement-ml`  
+4. Main file: `app.py`  
+
+Direct deploy helper:  
+https://share.streamlit.io/deploy?repository=sadhasadhanaa37-afk/student-placement-ml&branch=master&mainModule=app.py
+
+### Option B — Render
+This repo includes `render.yaml`. On [render.com](https://render.com): **New → Blueprint** → connect this GitHub repo.
+
+## Project structure
 ```
 student-placement-ml/
-│
+├── app.py
+├── requirements.txt
+├── render.yaml
 ├── data/
-│   └── generate_data.py       # Script to generate synthetic dataset
-│   └── student_placement.csv  # Generated dataset
-│
 ├── models/
-│   └── placement_model.pkl    # Trained ML model pipeline
-│
-├── src/
-│   ├── preprocessing.py       # Data cleaning and feature engineering
-│   ├── train.py               # Model training, evaluation, and saving
-│   └── predict.py             # Inference logic
-│
-├── app.py                     # Streamlit frontend application
-├── requirements.txt           # Dependencies
-└── README.md
+└── src/   (predict, train, chatbots, voice_ui, …)
 ```
-
-## Setup Instructions
-
-1. **Create a virtual environment (optional but recommended):**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Generate Dataset:**
-   ```bash
-   python data/generate_data.py
-   ```
-
-4. **Train Model:**
-   ```bash
-   python src/train.py
-   ```
-
-5. **Run Streamlit App:**
-   ```bash
-   streamlit run app.py
-   ```
